@@ -68,7 +68,7 @@ cd laravel-task-manager</code></pre>
 
 <h2>Screenshots</h2>
 <p>Below is an example screenshot of the application interface:</p>
-<p><img src="screenshots/tasks.png" alt="Task Manager Screenshot" width="800"></p>
+<p><img src="https://raw.githubusercontent.com/RickJurrasic/laravel-task-manager/refs/heads/main/public/screenshots/tasks.png" alt="Task Manager Screenshot" width="800"></p>
 
 <hr>
 
