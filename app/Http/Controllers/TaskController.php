@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
 use App\Http\Requests\TaskRequest;
-use Illuminate\Http\Request;
+use App\Models\Task;
+use App\Models\User;
 
 class TaskController extends Controller
 {
@@ -14,6 +14,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::orderBy('deadline_at')->get();
+
         return view('tasks.index', compact('tasks'));
     }
 
@@ -32,20 +33,12 @@ class TaskController extends Controller
     {
         $validated = $request->validated();
 
-        // Hardcoded user ID from seeder
-        $validated['user_id'] = 1;
+        // Get the user_id from the first user
+        $validated['user_id'] = User::first()->id;
 
         Task::create($validated);
 
         return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
@@ -63,6 +56,7 @@ class TaskController extends Controller
     {
         $validated = $request->validated();
         $task->update($validated);
+
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
     }
 
